@@ -4,16 +4,17 @@
 \alias{ALARM}
 \alias{ALARM_NS}
 \alias{ALARM_ES}
-\title{Asian Lung Cancer Absolute Risk Models}
+\title{Asian Lung Cancer Absolute Risk Models (ALARM)}
 \usage{
 ALARM_NS()
 
 ALARM_ES()
 }
 \value{
-ALARM model objects (i.e. a \code{list} with the class \code{flexsurvreg}).
+ALARM model objects (i.e. a \code{list} with the class \code{fmsm}).
 }
 \description{
 These functions return ALARM model objects that can be used to make
-predictions of the \emph{t}-year absolute risk of lung cancer mortality.
+predictions of the \emph{t}-year absolute risk of lung cancer mortality. These
+functions are called internally by \code{\link[=predictALARM]{predictALARM()}}, if necessary.
 }

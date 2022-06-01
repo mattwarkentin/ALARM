@@ -7,8 +7,7 @@
 validate_data(data)
 }
 \arguments{
-\item{data}{A \code{data.frame} or \code{tibble} with the following numeric columns
-(in any order):
+\item{data}{A \code{data.frame} with the following numeric columns, in any order:
 \itemize{
 \item \code{age} - Age (years)
 \item \code{sex} - Sex (0 = Man, 1 = Woman)
@@ -18,20 +17,19 @@ validate_data(data)
 \item \code{phx_lungdx} - Personal history of COPD? (0 = No, 1 = Yes)
 \item \code{hhinc} - Household income (see \code{Details})
 \item \code{bmi} - Body Mass Index (kg/m^2)
-\item \code{smk_ever} - Ever smoker? (0 = No/Never, 1 = Yes/Ever)
-\item \code{smk_former} - Former smoker? (0 = No, 1 = Yes)
+\item \code{smk_status} - Smoking status (1 = Never, 1 = Former, 3 = Current)
 \item \code{smk_duration} - Smoking duration (years)
 \item \code{smk_cigpday} - Smoking intensity (no. cigarettes per day)
 \item \code{smk_years_stop} - Years since quitting (years)
 }}
 }
 \value{
-Logical. \code{TRUE} if the data set is valid, \code{FALSE} otherwise.
+\code{FALSE} if the data set is invalid, otherwise nothing.
 }
 \description{
 \code{validate_data} is used to ensure all of the predictors are in the expected
 format before making predictions. This function is called internally by
-\code{predict.ALARM()}.
+\code{\link[=predictALARM]{predictALARM()}}.
 }
 \details{
 Household income has 6 levels. The levels are defined in yuan, and

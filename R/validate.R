@@ -2,10 +2,9 @@
 #' 
 #' `validate_data` is used to ensure all of the predictors are in the expected
 #'   format before making predictions. This function is called internally by
-#'   `predict.ALARM()`.
+#'   [`predictALARM()`].
 #' 
-#' @param data A `data.frame` or `tibble` with the following numeric columns
-#'   (in any order):
+#' @param data A `data.frame` with the following numeric columns, in any order:
 #'   * `age` - Age (years)
 #'   * `sex` - Sex (0 = Man, 1 = Woman)
 #'   * `fhx_cancer` - Family history of any cancer? (0 = No, 1 = Yes)
@@ -14,8 +13,7 @@
 #'   * `phx_lungdx` - Personal history of COPD? (0 = No, 1 = Yes)
 #'   * `hhinc` - Household income (see `Details`)
 #'   * `bmi` - Body Mass Index (kg/m^2)
-#'   * `smk_ever` - Ever smoker? (0 = No/Never, 1 = Yes/Ever)
-#'   * `smk_former` - Former smoker? (0 = No, 1 = Yes)
+#'   * `smk_status` - Smoking status (1 = Never, 1 = Former, 3 = Current)
 #'   * `smk_duration` - Smoking duration (years)
 #'   * `smk_cigpday` - Smoking intensity (no. cigarettes per day)
 #'   * `smk_years_stop` - Years since quitting (years)
@@ -26,7 +24,7 @@
 #'   `2 = 5000-9999` (767-1537), `3 = 10000-19999` (1537-3075),
 #'   `4 = 20000-34999` (3075-5381), and `5 = >= 35000` (>= 5381).
 #'   
-#' @return Logical. `TRUE` if the data set is valid, `FALSE` otherwise.
+#' @return `FALSE` if the data set is invalid, otherwise nothing.
 #' 
 #' @export
 validate_data <- function(data) {
@@ -38,8 +36,7 @@ validate_data <- function(data) {
   check_levels(data$phx_lungdx, c(0L, 1L), 'phx_lungdx')
   check_levels(data$hhinc, c(0L, 1L, 2L, 3L, 4L, 5L), 'hhinc')
   check_range(data$bmi, 18, 50, 'bmi')
-  check_levels(data$smk_ever, c(0L, 1L), 'smk_ever')
-  check_levels(data$smk_former, c(0L, 1L), 'smk_former')
+  check_levels(data$smk_status, c(1L, 2L, 3L), 'smk_status')
   check_range(data$smk_duration, 0, Inf, 'smk_duration')
   check_range(data$smk_cigpday, 0, Inf, 'smk_cigpday')
   check_range(data$smk_years_stop, 0, Inf, 'smk_years_stop')

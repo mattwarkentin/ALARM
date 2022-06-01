@@ -8,7 +8,7 @@ predictALARM(data, time = 5, ...)
 }
 \arguments{
 \item{data}{Data frame containing covariate values at which to produce
-absolute risk predictions. See \code{validate_data()} for information on the
+absolute risk predictions. See \code{\link[=validate_data]{validate_data()}} for information on the
 expected format of the \code{data}.}
 
 \item{time}{Time horizon at which to make predictions.}
@@ -16,9 +16,10 @@ expected format of the \code{data}.}
 \item{...}{Not currently used.}
 }
 \value{
-A \code{tibble} with same number of rows as \code{newdata} and in the same
-order. The \code{tibble} will contain the original columns plus the added
-column \code{ALARM}, which is the predicted absolute risk at time \code{time}.
+A \code{data.frame} with same number of rows as \code{newdata}, and in the
+same order. The \code{data.frame} will contain the original columns plus the
+added column \code{ALARM_pred}, which is the predicted absolute risk of lung
+cancer mortality at time \code{time}.
 }
 \description{
 Makes predictions for the absolute risk of lung cancer mortality for
@@ -29,9 +30,12 @@ horizon.
 
 data <- data.frame(age = 70, sex = 1, fhx_cancer = 1,
                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
-                   hhinc = 3, bmi = 30, smk_ever = c(0, 1),
-                   smk_former = 1, smk_duration = 3, smk_cigpday = 15,
-                   smk_years_stop = 0)
+                   hhinc = 3, bmi = 30, 
+                   smk_status = c(1, 2), smk_duration = c(NA, 30), 
+                   smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
 predictALARM(data)
 
+}
+\seealso{
+\code{\link[=validate_data]{validate_data()}}
 }
