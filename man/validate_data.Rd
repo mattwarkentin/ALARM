@@ -13,18 +13,18 @@ validate_data(data)
 \item \code{sex} - Sex (0 = Man, 1 = Woman)
 \item \code{fhx_cancer} - Family history of any cancer? (0 = No, 1 = Yes)
 \item \code{phx_cancer} - Personal history of cancer? (0 = No, 1 = Yes)
-\item \code{fev1fvc} - FEV1 / FVC (between 0 and 1)
+\item \code{fev1fvc} - FEV1 / FVC (percent, between 0 and 100)
 \item \code{phx_lungdx} - Personal history of COPD? (0 = No, 1 = Yes)
-\item \code{hhinc} - Household income (see \code{Details})
+\item \code{hhinc} - Annual household income (see \code{Details} section)
 \item \code{bmi} - Body Mass Index (kg/m^2)
 \item \code{smk_status} - Smoking status (1 = Never, 1 = Former, 3 = Current)
 \item \code{smk_duration} - Smoking duration (years)
-\item \code{smk_cigpday} - Smoking intensity (no. cigarettes per day)
-\item \code{smk_years_stop} - Years since quitting (years)
+\item \code{smk_cigpday} - Smoking intensity (avg. # of cigarettes per day)
+\item \code{smk_years_stop} - Time since quitting (years)
 }}
 }
 \value{
-\code{FALSE} if the data set is invalid, otherwise nothing.
+Throws an informative error if data are invalid, otherwise nothing.
 }
 \description{
 \code{validate_data} is used to ensure all of the predictors are in the expected
@@ -32,9 +32,23 @@ format before making predictions. This function is called internally by
 \code{\link[=predictALARM]{predictALARM()}}.
 }
 \details{
-Household income has 6 levels. The levels are defined in yuan, and
-the approximate USD equivalents are present in parentheses. Household
-income levels: \verb{0 = < 2500} (< 384), \code{1 = 2500-4999} (384-767),
-\code{2 = 5000-9999} (767-1537), \code{3 = 10000-19999} (1537-3075),
-\code{4 = 20000-34999} (3075-5381), and \verb{5 = >= 35000} (>= 5381).
+Total annual household income (\code{hhinc}) is a categorical variable with six
+levels:
+\itemize{
+\item \verb{0 = < 2,500 yuan}
+\item \verb{1 = 2,500-4,999 yuan}
+\item \verb{2 = 5,000-9,999 yuan}
+\item \verb{3 = 10,000-19,999 yuan}
+\item \verb{4 = 20,000-34,999 yuan}
+\item \verb{5 = >= 35,000 yuan}
+}
+}
+\examples{
+data <- data.frame(age = 70, sex = 1, fhx_cancer = 1,
+                   phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
+                   hhinc = 3, bmi = 30, 
+                   smk_status = c(1, 2), smk_duration = c(NA, 30), 
+                   smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
+validate_data(data)
+
 }

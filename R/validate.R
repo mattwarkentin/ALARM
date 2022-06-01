@@ -9,22 +9,34 @@
 #'   * `sex` - Sex (0 = Man, 1 = Woman)
 #'   * `fhx_cancer` - Family history of any cancer? (0 = No, 1 = Yes)
 #'   * `phx_cancer` - Personal history of cancer? (0 = No, 1 = Yes)
-#'   * `fev1fvc` - FEV1 / FVC (between 0 and 1)
+#'   * `fev1fvc` - FEV1 / FVC (percent, between 0 and 100)
 #'   * `phx_lungdx` - Personal history of COPD? (0 = No, 1 = Yes)
-#'   * `hhinc` - Household income (see `Details`)
+#'   * `hhinc` - Annual household income (see `Details` section)
 #'   * `bmi` - Body Mass Index (kg/m^2)
 #'   * `smk_status` - Smoking status (1 = Never, 1 = Former, 3 = Current)
 #'   * `smk_duration` - Smoking duration (years)
-#'   * `smk_cigpday` - Smoking intensity (no. cigarettes per day)
-#'   * `smk_years_stop` - Years since quitting (years)
+#'   * `smk_cigpday` - Smoking intensity (avg. # of cigarettes per day)
+#'   * `smk_years_stop` - Time since quitting (years)
 #'
-#' @details Household income has 6 levels. The levels are defined in yuan, and
-#'   the approximate USD equivalents are present in parentheses. Household
-#'   income levels: `0 = < 2500` (< 384), `1 = 2500-4999` (384-767),
-#'   `2 = 5000-9999` (767-1537), `3 = 10000-19999` (1537-3075),
-#'   `4 = 20000-34999` (3075-5381), and `5 = >= 35000` (>= 5381).
+#' @details 
+#' Total annual household income (`hhinc`) is a categorical variable with six
+#'   levels: 
+#'   * `0 = < 2,500 yuan`
+#'   * `1 = 2,500-4,999 yuan`
+#'   * `2 = 5,000-9,999 yuan`
+#'   * `3 = 10,000-19,999 yuan`
+#'   * `4 = 20,000-34,999 yuan`
+#'   * `5 = >= 35,000 yuan`
 #'   
-#' @return `FALSE` if the data set is invalid, otherwise nothing.
+#' @return Throws an informative error if data are invalid, otherwise nothing.
+#' 
+#' @examples
+#' data <- data.frame(age = 70, sex = 1, fhx_cancer = 1,
+#'                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
+#'                    hhinc = 3, bmi = 30, 
+#'                    smk_status = c(1, 2), smk_duration = c(NA, 30), 
+#'                    smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
+#' validate_data(data)
 #' 
 #' @export
 validate_data <- function(data) {
