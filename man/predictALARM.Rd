@@ -32,7 +32,7 @@ data <- data.frame(age = 70, sex = 1, fhx_cancer = 1,
                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
                    hhinc = 3, bmi = 30, 
                    smk_status = c(1, 2), smk_duration = c(NA, 30), 
-                   smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
+                   smk_cigpday = c(NA, 25))
 predictALARM(data)
 
 }

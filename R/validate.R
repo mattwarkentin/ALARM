@@ -16,7 +16,6 @@
 #'   * `smk_status` - Smoking status (1 = Never, 1 = Former, 3 = Current)
 #'   * `smk_duration` - Smoking duration (years)
 #'   * `smk_cigpday` - Smoking intensity (avg. # of cigarettes per day)
-#'   * `smk_years_stop` - Time since quitting (years)
 #'
 #' @details 
 #' Total annual household income (`hhinc`) is a categorical variable with six
@@ -35,7 +34,7 @@
 #'                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
 #'                    hhinc = 3, bmi = 30, 
 #'                    smk_status = c(1, 2), smk_duration = c(NA, 30), 
-#'                    smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
+#'                    smk_cigpday = c(NA, 25))
 #' validate_data(data)
 #' 
 #' @export
@@ -51,7 +50,6 @@ validate_data <- function(data) {
   check_levels(data$smk_status, c(1L, 2L, 3L), 'smk_status')
   check_range(data$smk_duration, 0, Inf, 'smk_duration')
   check_range(data$smk_cigpday, 0, Inf, 'smk_cigpday')
-  check_range(data$smk_years_stop, 0, Inf, 'smk_years_stop')
 }
 
 check_levels <- function(x, levels, nm) {

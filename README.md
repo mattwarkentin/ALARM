@@ -37,11 +37,11 @@ data <- data.frame(age = 70, sex = 1, fhx_cancer = 1,
                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
                    hhinc = 3, bmi = 30, 
                    smk_status = c(1, 2), smk_duration = c(NA, 30), 
-                   smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
+                   smk_cigpday = c(NA, 25))
 
 predictALARM(data, time = 5)
 #>      age sex fhx_cancer phx_cancer fev1fvc phx_lungdx hhinc bmi smk_status
-#>      smk_duration smk_cigpday smk_years_stop ALARM_pred
+#>      smk_duration smk_cigpday ALARM_pred
 #>  [ reached 'max' / getOption("max.print") -- omitted 2 rows ]
 ```
 

@@ -20,7 +20,6 @@ validate_data(data)
 \item \code{smk_status} - Smoking status (1 = Never, 1 = Former, 3 = Current)
 \item \code{smk_duration} - Smoking duration (years)
 \item \code{smk_cigpday} - Smoking intensity (avg. # of cigarettes per day)
-\item \code{smk_years_stop} - Time since quitting (years)
 }}
 }
 \value{
@@ -48,7 +47,7 @@ data <- data.frame(age = 70, sex = 1, fhx_cancer = 1,
                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
                    hhinc = 3, bmi = 30, 
                    smk_status = c(1, 2), smk_duration = c(NA, 30), 
-                   smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
+                   smk_cigpday = c(NA, 25))
 validate_data(data)
 
 }

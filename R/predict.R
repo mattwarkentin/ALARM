@@ -25,7 +25,7 @@
 #'                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
 #'                    hhinc = 3, bmi = 30, 
 #'                    smk_status = c(1, 2), smk_duration = c(NA, 30), 
-#'                    smk_cigpday = c(NA, 25), smk_years_stop = c(NA, 0))
+#'                    smk_cigpday = c(NA, 25))
 #' predictALARM(data)
 #'
 #' @export
@@ -51,8 +51,7 @@ predictALARM <- function(data, time = 5, ...) {
       smk_former = factor(smk_former),
       fev1fvc_p5 = fev1fvc / 5,
       smk_duration_p5 = smk_duration / 5,
-      smk_cigpday_p10 = smk_cigpday / 10,
-      smk_years_stop_p5 = smk_years_stop / 5
+      smk_cigpday_p10 = smk_cigpday / 10
     )
   
   data_split <- 
@@ -111,7 +110,7 @@ predictES <- function(data, time, ...) {
 
 utils::globalVariables(
   c('age', 'sex', 'smk_former', 'fev1fvc',
-    'smk_duration', 'smk_cigpday', 'smk_years_stop',
+    'smk_duration', 'smk_cigpday',
     'smk_ever', 'ALARM', '.order', 'smk_status',
     'predictNS', 'predictES')
 )
