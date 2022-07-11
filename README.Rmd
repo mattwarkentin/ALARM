@@ -7,6 +7,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+options(max.print = 100)
 ```
 
 # ALARM
@@ -18,7 +19,7 @@ The `{ALARM}` package provides a single primary function, `predictALARM()` to pr
 
 The models used to make predictions are based on the following study ([link](https://www.medrxiv.org/content/10.1101/2022.04.22.22274185v1)):
 
-> Warkentin MT, Tammemägi MC, Espin-Garcia O, Budhathoki S, Liu G, Hung RJ. Asian Lung Cancer Absolute Risk Models for lung cancer mortality based on China Kadoorie Biobank. medRxiv. 2022 Apr 23.
+> Warkentin MT, Tammemägi MC, Espin-Garcia O, Budhathoki S, Liu G, Hung RJ. Asian Lung Cancer Absolute Risk Models for lung cancer mortality based on China Kadoorie Biobank. medRxiv. 2022 July 01.
 
 ## Installation
 
@@ -30,21 +31,27 @@ remotes::install_github('mattwarkentin/ALARM')
 
 ## Usage
 
-You can make predictions for the absolute risk of lung cancer mortality by supplying a `data.frame` with the requisite covariates and a time horizon. See `?validate_data` for more details on the expected format of the data.
+Once the package has been installed, we can load the package and make predictions for the absolute risk of lung cancer mortality by supplying a `data.frame` with the requisite covariates and a time horizon to `predictALARM()`.
 
-```{r example}
+In this example, we will create some example data for two individuals, one ever-smoker and one never-smoker, with similar covariate values, with the exception of smoking history which are set to missing (`NA`) for the never-smoker. Please see `?validate_data` for more details on the expected format of the input data.
+
+```{r example-data}
 library(ALARM)
 
 data <- data.frame(age = 70, sex = 1, fhx_cancer = 1,
                    phx_cancer = 0, fev1fvc = 70, phx_lungdx = 1,
                    hhinc = 3, bmi = 30, 
-                   smk_status = c(1, 2), smk_duration = c(NA, 30), 
-                   smk_cigpday = c(NA, 25))
+                   smk_status = c(1, 2), smk_duration = c(NA, 40), 
+                   smk_cigpday = c(NA, 20))
+```
 
+Next, we use the `predictALARM()` function to estimate the absolute risk of lung cancer mortality for a given time horizon, *t* (e.g., `time = 5`).
+
+```{r example-prediction}
 predictALARM(data, time = 5)
 ```
 
-`predictALARM()` returns a `data.frame` with the input data and an additional column `ALARM_pred`, which contains the absolute risk estimate.
+`predictALARM()` returns a `data.frame` that contains all of the columns from the input `data`, with the addition of a new column, `ALARM_pred`, which contains the lung cancer mortality absolute risk estimates at the chosen time horizon and conditional on the subjects' covariates.
 
 ## Code of Conduct
 
