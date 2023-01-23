@@ -51,19 +51,26 @@ predictALARM <- function(data, time = 5, ...) {
       smk_former = factor(smk_former),
       fev1fvc_p5 = fev1fvc / 5,
       smk_duration_p5 = smk_duration / 5,
-      smk_cigpday_p10 = smk_cigpday / 10
+      smk_cigpday_p10 = smk_cigpday / 10,
+      .order = 1:dplyr::n()
     )
   
-  data_split <- 
-    data_fmt %>%
-    dplyr::mutate(.order = 1:dplyr::n()) %>% 
-    dplyr::group_split(smk_ever)
-    
-  smk_never <- data_split[[1]]
-  smk_ever <-  data_split[[2]]
+  smk_never <- 
+    data_fmt %>% 
+    filter(smk_ever == 0L)
   
-  smk_never <- predictNS(smk_never, time)
-  smk_ever <- predictES(smk_ever, time)
+  smk_ever <-    
+    data_fmt %>% 
+    filter(smk_ever == 1L)
+  
+  # Never smokers
+  if (nrow(smk_never) >= 1L) {
+    smk_never <- predictNS(smk_never, time)
+  }
+  
+  if (nrow(smk_ever) >= 1L) {
+    smk_ever <- predictES(smk_ever, time)
+  }
   
   data_preds <-
     dplyr::bind_rows(smk_never, smk_ever) %>% 
