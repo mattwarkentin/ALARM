@@ -57,11 +57,11 @@ predictALARM <- function(data, time = 5, ...) {
   
   smk_never <- 
     data_fmt %>% 
-    filter(smk_ever == 0L)
+    dplyr::filter(smk_ever == 0L)
   
   smk_ever <-    
     data_fmt %>% 
-    filter(smk_ever == 1L)
+    dplyr::filter(smk_ever == 1L)
   
   # Never smokers
   if (nrow(smk_never) >= 1L) {
