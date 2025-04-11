@@ -1,5 +1,5 @@
 
-# ALARM
+# ALARM: Asian Lung Cancer Absolute Risk Models
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -9,15 +9,13 @@ The `{ALARM}` package provides a single primary function,
 based on a set of covariates and a chosen time horizon.
 
 The models used to make predictions are based on the following study
-([link](https://www.medrxiv.org/content/10.1101/2022.04.22.22274185v1)):
+([link](https://doi.org/10.1093/jnci/djac176)):
 
-> Warkentin MT, Tammemägi MC, Espin-Garcia O, Budhathoki S, Liu G, Hung
-> RJ. Asian Lung Cancer Absolute Risk Models for lung cancer mortality
-> based on China Kadoorie Biobank. medRxiv. 2022 July 01.
+> Warkentin MT, Tammemägi MC, Espin-Garcia O, Budhathoki S, Liu G, Hung RJ. Lung Cancer absolute risk models for mortality in an Asian population using the China Kadoorie Biobank. JNCI: Journal of the National Cancer Institute. 2022 Dec 1;114(12):1665-73.
 
 ## Installation
 
-You can install the development version of `ALARM` from GitHub using:
+You can install `ALARM` from GitHub using:
 
 ``` r
 remotes::install_github('mattwarkentin/ALARM')
